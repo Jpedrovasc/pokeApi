@@ -7,6 +7,7 @@ const pokedexController = new PokedexController();
 
 pokedexRouter.get("/",pokedexController.index);
 
+
 pokedexRouter.post(
     '/Consultar',
     celebrate({

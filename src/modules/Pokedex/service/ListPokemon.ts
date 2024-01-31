@@ -3,11 +3,15 @@ import { InformcaoConsultaPokemon } from '../entites/informacaoConsultaPokemon';
 import { InformacaoGeralPokemon } from '../entites/informacaoGeralPokemon';
 import { Pokemon } from '../entites/pokemon';
 
+
 class ListPokemon {
   public async execute(data: { limitValue: string }) {
     try {
-      const limit = parseInt(data.limitValue) || 12;
-      const urlConsulta = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
+      const limit = GetLimite(data.limitValue);
+
+      const limitPrimario = limit[0];
+      const limitSecundario = limit[1];      
+      const urlConsulta = `https://pokeapi.co/api/v2/pokemon?offset=${limitPrimario}&limit=${limitSecundario}`;
 
       const response: AxiosResponse = await axios.get(urlConsulta);
       const pokemonLista: InformcaoConsultaPokemon[] = response.data.results;
@@ -17,11 +21,14 @@ class ListPokemon {
         const pokemonInfoGerais: InformacaoGeralPokemon = responseInformacaoGeralPokemon.data;
 
         const identificadorPokemon = GetIdentificadorIdPokemon(pokemonInfoGerais.id);
-        
+
+        const types: string[] = pokemonInfoGerais.types.map((typeDetail) => typeDetail.type.name);
+
         return {
           id: pokemonInfoGerais.id.toString(),
           name: pokemonInfoGerais.name,
           imagem: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${identificadorPokemon}.png`,
+          types,
         };
       };
 
@@ -48,6 +55,21 @@ function GetIdentificadorIdPokemon(numero: string): string {
     valor = numero.toString();
   }
   return valor;
-}
+};
+
+function GetLimite(numero: string): number[] {
+  let valorPrimario = 0;
+  let valorSecundario = 0;
+
+  if (parseInt(numero) === 0) {
+    valorPrimario = 0;
+    valorSecundario = 12;
+  } else {
+    valorPrimario = parseInt(numero);
+    valorSecundario = 12;
+  }
+
+  return [valorPrimario, valorSecundario];
+};
 
 export default ListPokemon;
