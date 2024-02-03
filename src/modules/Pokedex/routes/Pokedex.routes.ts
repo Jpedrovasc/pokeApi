@@ -18,4 +18,14 @@ pokedexRouter.post(
     pokedexController.pokemonConsultar
   );
 
+pokedexRouter.post(
+  '/Exibir',
+  celebrate({
+    [Segments.BODY]: {
+      id: Joi.string().required()
+    },
+  }),
+  pokedexController.pokemonExibir
+);
+
 export default pokedexRouter;

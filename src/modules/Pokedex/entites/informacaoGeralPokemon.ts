@@ -1,8 +1,10 @@
 import { PokemonType } from '../entites/PokemonType';
+import { PokemonMove } from '../entites/PokemonMove';
+import { PokemonAbility } from '../entites/PokemonAbilities';
 
 export class InformacaoGeralPokemon {
   public name: string;
-  public abilities: string[];
+  public abilities: PokemonAbility[];
   public base_experience: string;
   public forms: string[];
   public game_indices: string;
@@ -11,7 +13,7 @@ export class InformacaoGeralPokemon {
   public id: string;
   public is_default: boolean;
   public location_area_encounters: string;
-  public moves: string[];
+  public moves: PokemonMove[];
   public order: string;
   public past_abilities: string[];
   public past_types: string[];
@@ -27,7 +29,7 @@ export class InformacaoGeralPokemon {
 
   constructor(data: {
     name: string;
-    abilities: string[];
+    abilities: PokemonAbility[];
     base_experience: string;
     forms: string[];
     game_indices: string;
@@ -36,7 +38,7 @@ export class InformacaoGeralPokemon {
     id: string;
     is_default: boolean;
     location_area_encounters: string;
-    moves: string[];
+    moves: PokemonMove[];
     order: string;
     past_abilities: string[];
     past_types: string[];

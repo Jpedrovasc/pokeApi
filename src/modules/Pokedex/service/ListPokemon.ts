@@ -28,7 +28,7 @@ class ListPokemon {
           id: pokemonInfoGerais.id.toString(),
           name: pokemonInfoGerais.name,
           imagem: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${identificadorPokemon}.png`,
-          types,
+          types :types
         };
       };
 
@@ -58,6 +58,11 @@ function GetIdentificadorIdPokemon(numero: string): string {
 };
 
 function GetLimite(numero: string): number[] {
+
+  // if(parseInt(numero) >= 1025) {
+  //   numero = "912";
+  // }
+
   let valorPrimario = 0;
   let valorSecundario = 0;
 
@@ -66,7 +71,7 @@ function GetLimite(numero: string): number[] {
     valorSecundario = 12;
   } else {
     valorPrimario = parseInt(numero);
-    valorSecundario = 12;
+    valorSecundario = 300;
   }
 
   return [valorPrimario, valorSecundario];

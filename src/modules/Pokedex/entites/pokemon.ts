@@ -3,18 +3,23 @@ export class Pokemon {
     public id: string;
     public imagem: string;
     public types: string[];
-
+    public abilities: string[];
+    public moves: string[];
   
     constructor(data: {
       name: string;
       id: string;
       imagem: string;
       types: string[];
+      abilities: string[];
+      moves: string[];
     }) {
       this.name = data.name;
       this.id = data.id;
       this.imagem = data.imagem;
       this.types = data.types;
+      this.abilities = data.types;
+      this.moves = data.moves;
     }
   }
   

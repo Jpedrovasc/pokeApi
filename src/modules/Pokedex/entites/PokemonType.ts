@@ -1,4 +1,4 @@
-export class InformacaoConsultaPokemon {
+export class PokemonType {
     public name: string;
     public url: string;
     public types: PokemonType[]; 
