@@ -2,9 +2,8 @@ import axios, { AxiosResponse } from 'axios';
 import { InformcaoConsultaPokemon } from '../entites/informacaoConsultaPokemon';
 import { InformacaoGeralPokemon } from '../entites/informacaoGeralPokemon';
 import { Pokemon } from '../entites/pokemon';
-import GetEvolucao from '../service/GetEvolucaoPokemon';
 
-class ExibirPokemon {
+class GetPokemonFiltro {
   public async execute(data: { id: string }) {
     try {
       const urlConsulta = `https://pokeapi.co/api/v2/pokemon/${data.id}/`;
@@ -27,12 +26,8 @@ class ExibirPokemon {
         return abilityDetail.ability.name.charAt(0).toUpperCase() + abilityDetail.ability.name.slice(1);
       });
       
+
       const NomeFormatado = pokemonInfoGerais.name.charAt(0).toUpperCase() + pokemonInfoGerais.name.slice(1);
-
-      const listarPokemons = new GetEvolucao;
-
-      const result = await listarPokemons.execute({id: pokemonInfoGerais.id});
-
 
       const pokemon: Pokemon = {
         id: pokemonInfoGerais.id,
@@ -63,4 +58,4 @@ function GetIdentificadorIdPokemon(numero: string): string {
   return valor;
 }
 
-export default ExibirPokemon;
+export default GetPokemonFiltro;
