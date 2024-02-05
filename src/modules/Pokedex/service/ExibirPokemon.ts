@@ -31,7 +31,7 @@ class ExibirPokemon {
 
       const listarPokemons = new GetEvolucao;
 
-      const result = await listarPokemons.execute({id: pokemonInfoGerais.id});
+       const Evolucaoresultado = await listarPokemons.execute({id: pokemonInfoGerais.id});
 
 
       const pokemon: Pokemon = {
@@ -41,6 +41,7 @@ class ExibirPokemon {
         types: types,
         abilities: abilities,
         moves: moves,
+        evolutions:Evolucaoresultado,
       };
 
       return pokemon;

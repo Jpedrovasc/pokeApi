@@ -1,6 +1,7 @@
 import { Request,Response } from "express"
 import ListPokemon from '../service/ListPokemon';
 import ExibirPokemon from '../service/ExibirPokemon';
+import GetEvolucao from '../service/GetEvolucaoPokemon';
 
 export default class PokedexController {
 
@@ -33,6 +34,22 @@ export default class PokedexController {
         try {
 
             const Pokemon = new ExibirPokemon;
+
+            const result = await Pokemon.execute(request.body)
+
+            return response.json(result);
+            
+        } catch (error) {
+            return response.status(500).json({
+                Error: 'Erro ao buscar Pokémon: ' + error
+            });
+        }
+    }
+
+    public async pokemonGet(request: Request, response: Response): Promise < Response > {
+        try {
+
+            const Pokemon = new GetEvolucao;
 
             const result = await Pokemon.execute(request.body)
 

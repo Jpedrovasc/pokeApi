@@ -5,6 +5,7 @@ export class Pokemon {
     public types: string[];
     public abilities: string[];
     public moves: string[];
+    public evolutions: string[];
   
     constructor(data: {
       name: string;
@@ -13,6 +14,7 @@ export class Pokemon {
       types: string[];
       abilities: string[];
       moves: string[];
+      evolutions: string[];
     }) {
       this.name = data.name;
       this.id = data.id;
@@ -20,6 +22,7 @@ export class Pokemon {
       this.types = data.types;
       this.abilities = data.types;
       this.moves = data.moves;
+      this.evolutions = data.evolutions;
     }
   }
   

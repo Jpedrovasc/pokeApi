@@ -28,11 +28,13 @@ class ListPokemon {
           id: pokemonInfoGerais.id.toString(),
           name: pokemonInfoGerais.name,
           imagem: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${identificadorPokemon}.png`,
-          types :types
+          types: types,
+          abilities: [],
+          moves: [],
+          evolutions: []
         };
       };
 
-      // Usar Promise.all para realizar as chamadas simultaneamente
       const pokemons: Pokemon[] = await Promise.all(
         pokemonLista.map((pokemon) => fetchPokemonDetails(pokemon.url))
       );
@@ -59,19 +61,15 @@ function GetIdentificadorIdPokemon(numero: string): string {
 
 function GetLimite(numero: string): number[] {
 
-  // if(parseInt(numero) >= 1025) {
-  //   numero = "912";
-  // }
-
   let valorPrimario = 0;
   let valorSecundario = 0;
 
   if (parseInt(numero) === 0) {
     valorPrimario = 0;
-    valorSecundario = 12;
+    valorSecundario = 200;
   } else {
     valorPrimario = parseInt(numero);
-    valorSecundario = 300;
+    valorSecundario = 200;
   }
 
   return [valorPrimario, valorSecundario];

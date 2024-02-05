@@ -28,4 +28,14 @@ pokedexRouter.post(
   pokedexController.pokemonExibir
 );
 
+pokedexRouter.post(
+  '/getPokemon',
+  celebrate({
+    [Segments.BODY]: {
+      id: Joi.string().required()
+    },
+  }),
+  pokedexController.pokemonGet
+);
+
 export default pokedexRouter;
